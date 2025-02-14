@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provide Your Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none; /* Remove underline */
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline */
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Add padding between the buttons */
+        .btn-group {
+            margin-top: 20px;
+        }
+
+        .submit-btn, .btn {
+            margin-bottom: 10px; /* Space between buttons */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Provide Your Feedback</h1>
+    </header>
+
+    <div class="container">
+        <h2>We value your opinion!</h2>
+        <p>Please share your feedback with us. It will help us improve the voting experience.</p>
+
+        <!-- Feedback Form -->
+        <form id="feedback-form">
+            <textarea name="feedback" placeholder="Enter your feedback here..."></textarea>
+
+            <!-- Instead of submitting the form, the anchor link redirects the user to the Thank You page -->
+            <a href="/datafeedback" class="submit-btn" id="submit-button">Submit Feedback</a>
+        </form>
+
+        <!-- Add padding between buttons -->
+        <div class="btn-group">
+            <a href="/" class="btn">Back to Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 E-Voting Application</p>
+    </footer>
+
+    <script>
+        // Optional: You can add an event listener if you'd like to do some additional client-side checks
+        document.getElementById('submit-button').addEventListener('click', function(e) {
+            e.preventDefault();  // Prevents the default anchor action
+            alert('Thank you for your feedback!');
+            // Redirect to the "Thank You" page
+            window.location.href = '/datafeedback';  // Redirect to the "Thank You" page
+        });
+    </script>
+</body>
+</html>

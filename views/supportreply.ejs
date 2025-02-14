@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thank You - E-Voting System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+            opacity: 0; /* Initially invisible */
+            transform: scale(0.8); /* Initially scaled down */
+            animation: fadeInScale 2s forwards; /* Apply the animation */
+        }
+        p {
+            color: #333;
+            font-size: 18px;
+        }
+
+        /* Keyframe animation to fade and scale the text */
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .button{
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>Thank You for Reaching Out!</h1>
+    <p>Your support request has been submitted successfully. You will receive a response within 24 hours.</p>
+    <a href="home.html"><button class="button">Return TO Home</button>  </a>
+</body>
+</html>

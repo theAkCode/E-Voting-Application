@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gender Distribution Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        canvas {
+            max-width: 100%;
+            margin-top: 30px;
+        }
+
+        #genderPieChart {
+            max-height: 300px; /* Reduce pie chart size */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Gender Distribution Chart</h1>
+    </header>
+
+    <div class="container">
+        <h2>Registered Users Gender Statistics</h2>
+
+        <!-- Gender Bar Chart -->
+        <canvas id="genderBarChart"></canvas>
+
+        <!-- Gender Pie Chart -->
+        <canvas id="genderPieChart"></canvas>
+
+        <!-- Gender Data Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Gender</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Male</td>
+                    <td id="maleCount"></td>
+                </tr>
+                <tr>
+                    <td>Female</td>
+                    <td id="femaleCount"></td>
+                </tr>
+                <tr>
+                    <td>Other</td>
+                    <td id="otherCount"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <a href="/thank-you" class="btn">Back to Thank You Page</a>
+            <a href="/results" class="btn">View Results</a>
+            <a href="/" class="btn">Return to Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 E-Voting Application</p>
+    </footer>
+
+    <script>
+        // Function to fetch gender data from localStorage and prepare the charts and table
+        function createGenderCharts() {
+            // Retrieve registered users from localStorage
+            const registeredUsers = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Initialize counters for male, female, and other genders
+            let maleCount = 0;
+            let femaleCount = 0;
+            let otherCount = 0;
+
+            // Loop through registered users and count genders
+            registeredUsers.forEach(user => {
+                if (user.gender === 'male') {
+                    maleCount++;
+                } else if (user.gender === 'female') {
+                    femaleCount++;
+                } else {
+                    otherCount++;
+                }
+            });
+
+            // Update table with gender counts
+            document.getElementById('maleCount').textContent = maleCount;
+            document.getElementById('femaleCount').textContent = femaleCount;
+            document.getElementById('otherCount').textContent = otherCount;
+
+            // Data for charts
+            const genderLabels = ['Male', 'Female', 'Other'];
+            const genderCounts = [maleCount, femaleCount, otherCount];
+            const backgroundColors = ['#3e95cd', '#8e5ea2', '#3cba9f'];
+
+            // Create Bar Chart
+            const barCtx = document.getElementById('genderBarChart').getContext('2d');
+            new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: genderLabels,
+                    datasets: [{
+                        label: 'Number of Users',
+                        data: genderCounts,
+                        backgroundColor: backgroundColors,
+                        borderColor: backgroundColors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Create Pie Chart
+            const pieCtx = document.getElementById('genderPieChart').getContext('2d');
+            new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    labels: genderLabels,
+                    datasets: [{
+                        data: genderCounts,
+                        backgroundColor: backgroundColors,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                    }
+                }
+            });
+        }
+
+        // Call the function to create the charts and populate the table on page load
+        window.onload = createGenderCharts;
+    </script>
+
+</body>
+</html>

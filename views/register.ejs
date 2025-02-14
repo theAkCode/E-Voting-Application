@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            width: 50%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="tel"],
+        select {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>E-Voting System - Register</h1>
+    </header>
+    <main>
+        <div class="container">
+            <form id="registrationForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+
+                <label for="voterId">Voter ID:</label>
+                <input type="text" id="voterId" name="voterId" placeholder="Enter your voter ID" required>
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="others">Others</option>
+                </select>
+
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Function to handle registration
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get user data from the form
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const mobile = document.getElementById('mobile').value;
+            const voterId = document.getElementById('voterId').value;
+            const gender = document.getElementById('gender').value;
+
+            // Create a user object
+            const user = {
+                username,
+                password,
+                mobile,
+                voterId,
+                gender
+            };
+
+            // Retrieve existing users from localStorage
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Add the new user to the users array
+            users.push(user);
+
+            // Store the updated array of users in localStorage
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Send the data to the backend (you would typically do this with an AJAX request)
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Registration successful! Redirecting to login page...');
+                    window.location.href = '/login'; // Redirect to login page
+                } else {
+                    alert('Error registering user. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error registering user. Please try again.');
+            });
+        });
+    </script>
+</body>
+
+</html>

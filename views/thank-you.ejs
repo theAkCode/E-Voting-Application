@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Voting!</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN for creating charts -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .voucher {
+            background-color: #4CAF50;
+            width: 100px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            color: white;
+            display: flex;
+            margin: 30px auto;
+            border: none;
+            padding: 20px;
+        }
+
+        div h1 {
+            background-color: #db9c09;
+            border-radius: 5px;
+            color: white;
+            height: auto;
+        }
+
+        .voucher a {
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+        }
+
+        /* Feedback Button Style */
+        .feedback-btn {
+            background-color: #ff9800;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: white;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .feedback-btn:hover {
+            background-color: #f57c00;
+        }
+
+        /* Gender Chart Button */
+        .gender-chart-btn {
+            background-color: #FF5722;
+            padding: 10px 20px;
+            margin-top: 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .gender-chart-btn:hover {
+            background-color: #E64A19;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Thank You for Voting!</h1>
+    </header>
+
+    <div class="container">
+        <h1>Yay, you won a voucher!!!</h1>
+        <h2>Your vote has been recorded.</h2>
+
+        <!-- Option to view results -->
+        <a href="\results" class="btn">View Results</a>
+
+        <!-- Option to return to the home page -->
+        <a href="/" class="btn">Return to Home</a>
+
+        <!-- Option to log out -->
+        <a href="/login" class="btn" onclick="logout()">Logout</a>
+
+        <!-- Voucher -->
+        <div class="voucher">
+            <a href="/voucher">CLICK TO REDEEM</a>
+        </div>
+
+        <!-- Feedback Button -->
+        <a href="/feedback" class="feedback-btn">Give Feedback</a>
+
+        <!-- Gender Chart Button -->
+        <a href="/genderchart" class="gender-chart-btn">View Gender Chart</a>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 E-Voting Application</p>
+    </footer>
+
+    <script>
+        // Logout function that clears the session/localStorage
+        function logout() {
+            // Clear voting session or user data (for example)
+            localStorage.clear();
+            alert("You have been logged out.");
+        }
+    </script>
+
+</body>
+</html>

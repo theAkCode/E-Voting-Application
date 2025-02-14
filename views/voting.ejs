@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            width: 50%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        input[type="submit"],
+        button {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+    <script>
+        function handleVoteSubmission(event) {
+            event.preventDefault(); // Prevent the form's default submission
+            
+            const selectedCandidate = document.querySelector('input[name="candidate"]:checked').value;
+
+            // Retrieve or initialize voting data
+            const votingData = JSON.parse(localStorage.getItem('votingData')) || {
+                candidates: {
+                    candidate1: 0,
+                    candidate2: 0,
+                    candidate3: 0,
+                    candidate4: 0,
+                },
+                voters: 0
+            };
+
+            // Increment votes for the selected candidate and voter count
+            votingData.candidates[selectedCandidate]++;
+            votingData.voters++;
+
+            // Save updated data back to localStorage
+            localStorage.setItem('votingData', JSON.stringify(votingData));
+
+            // Redirect to the Results page
+            window.location.href = "/thank-you";
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>E-Voting System - Vote for Your Candidate</h1>
+    </header>
+
+    <div class="container">
+        <h2>Vote for Your Candidate</h2>
+        <form id="votingForm" onsubmit="handleVoteSubmission(event)">
+            <label><input type="radio" name="candidate" value="candidate1" required> Candidate 1</label>
+            <label><input type="radio" name="candidate" value="candidate2"> Candidate 2</label>
+            <label><input type="radio" name="candidate" value="candidate3"> Candidate 3</label>
+            <label><input type="radio" name="candidate" value="candidate4"> Candidate 4</label>
+
+            <input type="submit" value="Submit Vote">
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 E-Voting Application</p>
+    </footer>
+</body>
+
+</html>

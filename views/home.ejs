@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - E-Voting System</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        
+        body {
+            background-image: url('indian-flag-design-made-with-in-wave-style-vector-4593321.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: white;
+        }
+
+       
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 70px;
+            height: 70px;
+            cursor: pointer; 
+        }
+
+        .logo div {
+            font-weight: 700;
+            font-size: 30px;
+            border: 5px solid black;
+            border-radius: 20px;
+            padding: 10px;
+            color: white;
+        }
+
+       
+        .right ul {
+            display: flex;
+            gap: 34px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .right ul li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .right ul li a {
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .right ul li a:hover {
+            color: #ffcc00;
+        }
+
+        .right ul li img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger-menu div {
+            width: 30px;
+            height: 5px;
+            background-color: white;
+        }
+
+        .menu-dropdown {
+            display: none;
+            flex-direction: column;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+        }
+
+        .menu-dropdown a {
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #fff;
+        }
+
+        .menu-dropdown a:hover {
+            background-color: #4CAF50;
+        }
+
+        
+        .toll-free-number {
+            color: white;
+            font-size: 16px;
+            margin-left: 20px;
+        }
+
+        .notification-panel {
+            position: fixed;
+            top: 150px;
+            right: 10px;
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            animation: float 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .notification-panel h2 {
+            margin-top: 0;
+            font-size: 20px; 
+            font-weight: bold;
+        }
+
+        .notification {
+            background-color: #4CAF50;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .notification:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .moving-text {
+            display: inline-block;
+            white-space: nowrap;
+            font-size: 30px;
+            font-weight: bold;
+            animation: moveText 20s linear infinite;
+        }
+
+        @keyframes moveText {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .right {
+                display: none;
+            }
+
+            .hamburger-menu {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                
+                <a href="login.html">
+                    <img src="unnamed.png" alt="E-Voting Logo">
+                </a>
+                <div>Welcome For E-Voting</div>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><a href="/"><span>Home</span></a></li>
+                    <li><a href="/register"><span>Register</span></a></li>
+                    <li><a href="/login"><span>Vote</span></a></li>
+                    <li><a href="/support"><span>Support</span></a></li>
+                    <li><a href="/"><span>About us</span></a></li>
+                    <li><span>Toll-free: <strong>1800-123-4567</strong></span></li>
+                </ul>
+            </div>
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="menu-dropdown" id="menuDropdown">
+        <a href="/">Home</a>
+        <a href="/register">Register</a>
+        <a href="/login">Vote</a>
+        <a href="/support">Support</a>
+        <a href="/">About us</a>
+    </div>
+
+    <div class="notification-panel" id="notificationPanel">
+        <h2>Election Updates</h2>
+        <div class="notification">
+            <strong>Election Registration Deadline:</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, libero
+        </div>
+        <div class="notification">
+            <strong>Voting Begins Soon:</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, earum.
+        </div>
+        <div class="notification">
+            <strong>Election Results:</strong> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, officiis.
+        </div>
+        <div class="notification">
+            <strong>ID Update:</strong> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis amet maxime consequuntur molestiae dicta at!
+        </div>
+    </div>
+
+    <footer>
+        <div class="moving-text">
+            It's not enough to just want change... You have to make a change by voting.
+        </div>
+    </footer>
+
+    <script>
+        
+        function toggleMenu() {
+            const menuDropdown = document.getElementById('menuDropdown');
+            menuDropdown.style.display = menuDropdown.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
+</body>
+</html>
